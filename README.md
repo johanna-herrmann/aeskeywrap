@@ -76,6 +76,22 @@ const wrappedKey = fromString(wrappedKeyBase64, 'base64')
 const wrappedKey_ = fromString(wrappedKeyhex, 'hex')
 ```
 
+#### wrap and convert to base64 string at once
+
+```js
+import { wrapToString } from 'aeskeywrap';
+
+const wrappedKey = wrapToString(key, kek, 'base64');
+```
+
+#### convert from base64 string and unwrap at once
+
+```js
+import { unwrapFromString } from 'aeskeywrap';
+
+const key = unwrapFromString(wrappedKeyBase64, kek, 'base64');
+```
+
 #### encodings
 
 You can use all encodings, available at buffer.toString() function. \
