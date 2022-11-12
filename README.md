@@ -9,6 +9,8 @@ Provides the [RFC 3394 key wrapping](http://csrc.nist.gov/encryption/kms/key-wra
 This package implements the aes-key-wrap (key wrapping and unwrapping), following [this heise article](https://www.heise.de/netze/rfc/rfcs/rfc3394.shtml),
 based on the [specification by nist](http://csrc.nist.gov/encryption/kms/key-wrap.pdf).
 
+Unit Tests based on official [test vector](https://datatracker.ietf.org/doc/html/rfc3394#section-4.6)
+
 It works in:
 * nodejs
 * browsers (using, build and package tools like webpack)
