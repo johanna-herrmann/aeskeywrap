@@ -1,5 +1,7 @@
 # aeskeywrap
 
+Working in Progress. npm package not available, yet.
+
 Provides the [RFC 3394 key wrapping](http://csrc.nist.gov/encryption/kms/key-wrap.pdf) (also known as aes-key-wrap), written in TypeScrypt.
 
 ## Introduction

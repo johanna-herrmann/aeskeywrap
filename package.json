@@ -1,0 +1,41 @@
+{
+  "name": "aeskeywrap",
+  "version": "1.0.0",
+  "description": "Provides the RFC 3394 key wrapping (also known as aes-key-wrap), written in TypeScrypt.",
+  "contributors": [
+    {
+      "name": "mark-herrmann",
+      "email": "github@markherrmann.de"
+    }
+  ],
+  "private": false,
+  "main": "build/lib/index.js",
+  "types": "build/lib/index.d.ts",
+  "author": "Mark Herrmann (mark-herrmann)",
+  "bugs": {
+    "url": "https://github.com/mark-herrmann/aeskeywrap/issues"
+  },
+  "homepage": "https://github.com/mark-herrmann/aeskeywrap#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "assertthat": "6.5.2",
+    "roboter": "13.2.1",
+    "typescript": "4.8.4"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mark-herrmann/aeskeywrap.git"
+  },
+  "keywords": [
+    "crypto",
+    "aes",
+    "key",
+    "keywrap",
+    "wrap",
+    "unwrap",
+    "encryption",
+    "decryption"
+  ],
+  "license": "MIT"
+}
