@@ -9,11 +9,19 @@ Provides the [RFC 3394 key wrapping](http://csrc.nist.gov/encryption/kms/key-wra
 This package implements the aes-key-wrap (key wrapping and unwrapping), following [this heise article](https://www.heise.de/netze/rfc/rfcs/rfc3394.shtml),
 based on the [specification by nist](http://csrc.nist.gov/encryption/kms/key-wrap.pdf).
 
-Unit Tests based on official [test vector](https://datatracker.ietf.org/doc/html/rfc3394#section-4.6)
-
 It works in:
 * nodejs
 * browsers (using, build and package tools like webpack)
+
+## Supported key/kek lengths
+
+Following key/kek lengths are supported:
+
+* 128-bit key with 128-bit kek
+* 192-bit key with 192-bit kek
+* 256-bit key with 256-bit kek
+
+Mixed lengths (128-bit key with 256-bit kek, for example) are not supported, currently, but they don't make any sense either, since a chain with a weaker link does not become stronger by adding a stronger link.
 
 ## Use case
 
@@ -37,19 +45,19 @@ npm i aeskeywrap
 ### Wrap key with kek
 
 ```js
-import { wrap } from 'aeskeywrap';
+import { wrapKey } from 'aeskeywrap';
 
 // key, kek and wrappedKey are Unit8Arrays
-const wrappedKey = wrap(key, kek);
+const wrappedKey = wrapKey(key, kek);
 ```
 
 ### Unwrap key with kek
 
 ```js
-import { unwrap } from 'aeskeywrap';
+import { unwrapKey } from 'aeskeywrap';
 
 // key, kek and wrappedKey are Unit8Arrays
-const key = unwrap(wrappedKey, kek);
+const key = unwrapKey(wrappedKey, kek);
 ```
 
 ### Conversions
@@ -81,7 +89,7 @@ const wrappedKey_ = fromString(wrappedKeyhex, 'hex')
 #### wrap and convert to base64 string at once
 
 ```js
-import { wrapToString } from 'aeskeywrap';
+import { wrapKeyToString } from 'aeskeywrap';
 
 const wrappedKey = wrapToString(key, kek, 'base64');
 ```
@@ -89,7 +97,7 @@ const wrappedKey = wrapToString(key, kek, 'base64');
 #### convert from base64 string and unwrap at once
 
 ```js
-import { unwrapFromString } from 'aeskeywrap';
+import { unwrapKeyFromString } from 'aeskeywrap';
 
 const key = unwrapFromString(wrappedKeyBase64, kek, 'base64');
 ```
@@ -114,6 +122,13 @@ Currently this includes:
 
 * [node-forge](https://www.npmjs.com/package/node-forge) by [digitalbazaar](https://github.com/digitalbazaar), \
   used for AES encryption and decryption (AES-256)
+
+## Tests
+
+Unit Tests based on official test vectors
+* [for 128-bit key](https://datatracker.ietf.org/doc/html/rfc3394#section-4.1)
+* [for 192-bit key](https://datatracker.ietf.org/doc/html/rfc3394#section-4.4)
+* [for 256-bit key](https://datatracker.ietf.org/doc/html/rfc3394#section-4.6)
 
 ## License
 
