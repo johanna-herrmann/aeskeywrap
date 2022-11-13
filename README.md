@@ -14,7 +14,7 @@ based on the [specification by nist](http://csrc.nist.gov/encryption/kms/key-wra
 
 It works in:
 * nodejs
-* browsers (using, build and package tools like webpack)
+* browsers (using, build and package tools like webpack or browserify)
 
 ## Supported key/kek lengths
 
