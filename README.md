@@ -1,8 +1,11 @@
 # aeskeywrap
 
-Working in Progress. npm package not available, yet.
+[![npm package](https://nodei.co/npm/aeskeywrap.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/aeskeywrap/)
 
-Provides the [RFC 3394 key wrapping](http://csrc.nist.gov/encryption/kms/key-wrap.pdf) (also known as aes-key-wrap), written in TypeScrypt.
+[![npm](https://img.shields.io/npm/v/aeskeywrap)](https://www.npmjs.com/package/aeskeywrap) ![GitHub Actions - QA](https://github.com/mark-herrmann/aeskeywrap/workflows/QA/badge.svg?branch=main) ![GitHub Actions - Release](https://github.com/mark-herrmann/aeskeywrap/workflows/Release/badge.svg?branch=main)
+
+This package provides the [RFC 3394 key wrapping](http://csrc.nist.gov/encryption/kms/key-wrap.pdf) (also known as aes-key-wrap). \
+It's written in TypeScrypt.
 
 ## Introduction
 
