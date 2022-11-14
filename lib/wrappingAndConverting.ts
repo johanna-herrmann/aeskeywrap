@@ -6,6 +6,7 @@ import { unwrapKey, wrapKey } from './wrapping';
  * @param key the key to wrap (UintArray)
  * @param kek the kek (Uint8Array)
  * @param encoding the encoding to use
+ * @throws an Error if key and/or kek length is invalid
  * @returns the encoded wrapped key
  * @see {@link toString} for available encodings
  */
@@ -18,6 +19,8 @@ const wrapKeyToString = function (key: Uint8Array, kek: Uint8Array, encoding: En
  * @param encodedWrappedKey the encoded wrapped key to unwrap
  * @param kek the kek (Uint8Array)
  * @param encoding the encoding to use
+ * @throws an Error if wrappedKey and/or kek length is invalid
+ * @throws an Error on unauthentic data (Message: 'Unauthentic data. Wrong kek?')
  * @returns the unwrapped key (Uint8Array)
  * @see {@link fromString} for available encodings
  */
