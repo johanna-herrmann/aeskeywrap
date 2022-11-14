@@ -30,7 +30,7 @@ const wrapKey = function (key: Uint8Array, kek: Uint8Array): Uint8Array {
  * @param wrappedKey the wrapped key to unwrap (Unit8Array)
  * @param kek the kek (Unit8Array)
  * @throws an Error if wrappedKey and/or kek length is invalid
- * @throws an Error on unauthentic data
+ * @throws an Error on unauthentic data (Message: 'Unauthentic data. Wrong kek?')
  * @returns the unwrapped key (Unit8Array)
  */
 const unwrapKey = function (wrappedKey: Uint8Array, kek: Uint8Array): Uint8Array {
