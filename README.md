@@ -136,6 +136,7 @@ There are 2 different reasons for unauthentic data:
 * The wrapped key has been tampered with
 * The kek is wrong (e.g. due to an wrong password), which is the most common case
 
+The message `Unauthentic data. Wrong kek?` will never change (design decision). Therefore, it can be reliably used to determine whether the process failed due to unauthentic data.
 
 ## Used crypto libraries
 
