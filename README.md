@@ -109,17 +109,17 @@ const key = unwrapFromString(wrappedKeyBase64, kek, 'base64');
 
 You can use all encodings, available at buffer.toString() function. \
 Currently this includes:
-* 'ascii'
-* 'utf8'
-* 'utf-8'
-* 'utf16le'
-* 'ucs2'
-* 'ucs-2'
-* 'base64'
-* 'base64url'
-* 'latin1'
-* 'binary'
-* 'hex'
+* ascii
+* utf8
+* utf-8
+* utf16le
+* ucs2
+* ucs-2
+* base64
+* base64url
+* latin1
+* binary
+* hex
 
 ## Error handling
 
