@@ -121,6 +121,22 @@ Currently this includes:
 * 'binary'
 * 'hex'
 
+## Error handling
+
+There are 3 possible errors. \
+Each error only contains a message, specifying the error type.
+
+These are the 3 different messages (they are very self-explanatory):
+
+* `Unauthentic data. Wrong kek?`
+* `Invalid data length(s). kek must be 16, 24 or 32 bytes, key must be same length.`
+* `Invalid data length(s). kek must be 16, 24 or 32 bytes, wrappedKey must be 8 bytes longer`
+
+There are 2 different reasons for unauthentic data:
+* The wrapped key has been tampered with
+* The kek is wrong (e.g. due to an wrong password), which is the most common case
+
+
 ## Used crypto libraries
 
 * [node-forge](https://www.npmjs.com/package/node-forge) by [digitalbazaar](https://github.com/digitalbazaar), \
