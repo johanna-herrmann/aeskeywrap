@@ -150,6 +150,10 @@ Unit Tests based on official test vectors
 * [for 192-bit key](https://datatracker.ietf.org/doc/html/rfc3394#section-4.4)
 * [for 256-bit key](https://datatracker.ietf.org/doc/html/rfc3394#section-4.6)
 
+## Changelog
+
+[Changelog](https://github.com/mark-herrmann/aeskeywrap/blob/main/CHANGELOG.md)
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE.txt)
