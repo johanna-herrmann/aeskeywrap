@@ -2,7 +2,7 @@
 
 [![npm package](https://nodei.co/npm/aeskeywrap.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/aeskeywrap/)
 
-[![npm](https://img.shields.io/npm/v/aeskeywrap)](https://www.npmjs.com/package/aeskeywrap) [![QA](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml/badge.svg)](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml) [![Release](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/release.yml/badge.svg)](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/release.yml)
+[![npm](https://img.shields.io/npm/v/aeskeywrap)](https://www.npmjs.com/package/aeskeywrap) [![QA](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml/badge.svg?branch=main)](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml)
 
 This package provides the [RFC 3394 key wrapping](http://csrc.nist.gov/encryption/kms/key-wrap.pdf) (also known as aes-key-wrap). \
 It's written in TypeScrypt.
@@ -109,17 +109,34 @@ const key = unwrapFromString(wrappedKeyBase64, kek, 'base64');
 
 You can use all encodings, available at buffer.toString() function. \
 Currently this includes:
-* 'ascii'
-* 'utf8'
-* 'utf-8'
-* 'utf16le'
-* 'ucs2'
-* 'ucs-2'
-* 'base64'
-* 'base64url'
-* 'latin1'
-* 'binary'
-* 'hex'
+* ascii
+* utf8
+* utf-8
+* utf16le
+* ucs2
+* ucs-2
+* base64
+* base64url
+* latin1
+* binary
+* hex
+
+## Error handling
+
+There are 3 possible errors. \
+Each error only contains a message, specifying the error type.
+
+These are the 3 different messages (they are very self-explanatory):
+
+* `Unauthentic data. Wrong kek?`
+* `Invalid data length(s). kek must be 16, 24 or 32 bytes, key must be same length.`
+* `Invalid data length(s). kek must be 16, 24 or 32 bytes, wrappedKey must be 8 bytes longer`
+
+There are 2 different reasons for unauthentic data:
+* The wrapped key has been tampered with
+* The kek is wrong (e.g. due to an wrong password), which is the most common case
+
+The message `Unauthentic data. Wrong kek?` will never change (design decision). Therefore, it can be reliably used to determine whether the process failed due to unauthentic data.
 
 ## Used crypto libraries
 
@@ -132,6 +149,10 @@ Unit Tests based on official test vectors
 * [for 128-bit key](https://datatracker.ietf.org/doc/html/rfc3394#section-4.1)
 * [for 192-bit key](https://datatracker.ietf.org/doc/html/rfc3394#section-4.4)
 * [for 256-bit key](https://datatracker.ietf.org/doc/html/rfc3394#section-4.6)
+
+## Changelog
+
+[Changelog](https://github.com/mark-herrmann/aeskeywrap/blob/main/CHANGELOG.md)
 
 ## License
 
