@@ -4,13 +4,13 @@
 
 [![npm](https://img.shields.io/npm/v/aeskeywrap)](https://www.npmjs.com/package/aeskeywrap) [![QA](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml/badge.svg?branch=main)](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml)
 
-This package provides the [RFC 3394 key wrapping](http://csrc.nist.gov/encryption/kms/key-wrap.pdf) (also known as aes-key-wrap). \
+This package provides the [RFC 3394 key wrapping](https://www.rfc-editor.org/rfc/rfc3394) (also known as aes-key-wrap). \
 It's written in TypeScrypt.
 
 ## Introduction
 
 This package implements the aes-key-wrap (key wrapping and unwrapping), following [this heise article](https://www.heise.de/netze/rfc/rfcs/rfc3394.shtml),
-based on the [specification by nist](http://csrc.nist.gov/encryption/kms/key-wrap.pdf).
+based on the specification by nist.
 
 It works in:
 * nodejs
