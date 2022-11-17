@@ -94,7 +94,7 @@ const wrappedKey_ = fromString(wrappedKeyhex, 'hex')
 ```js
 import { wrapKeyToString } from 'aeskeywrap';
 
-const wrappedKey = wrapToString(key, kek, 'base64');
+const wrappedKey = wrapKeyToString(key, kek, 'base64');
 ```
 
 #### convert from base64 string and unwrap at once
@@ -102,7 +102,7 @@ const wrappedKey = wrapToString(key, kek, 'base64');
 ```js
 import { unwrapKeyFromString } from 'aeskeywrap';
 
-const key = unwrapFromString(wrappedKeyBase64, kek, 'base64');
+const key = unwrapKeyFromString(wrappedKeyBase64, kek, 'base64');
 ```
 
 #### encodings
