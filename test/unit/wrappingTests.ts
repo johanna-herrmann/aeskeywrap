@@ -1,7 +1,14 @@
 import { assert } from 'assertthat';
 import { Buffer } from 'buffer/';
-import forge from 'node-forge';
+import CryptoJS from 'crypto-js';
+import { wordArrayToBuffer } from '../../lib/aeskeywrap';
 import { invalidUnwrapInputException, invalidWrapInputException, unauthenticInputException, unwrapKey, wrapKey } from '../../lib/wrapping';
+
+const getRandomUint8Array = (sizeInBytes: number): Uint8Array => {
+  const randomWordArray = CryptoJS.lib.WordArray.random(sizeInBytes);
+
+  return new Uint8Array(wordArrayToBuffer(randomWordArray));
+};
 
 suite('wrapping', (): void => {
   interface TestVector {
@@ -59,10 +66,8 @@ suite('wrapping', (): void => {
   suite('randomly forth and back', (): void => {
     for (const { length } of testVectors) {
       test(`${length * 8} bit`, async (): Promise<void> => {
-        // eslint-disable-next-line no-sync
-        const key = new Uint8Array(Buffer.from(forge.random.getBytesSync(length), 'binary'));
-        // eslint-disable-next-line no-sync
-        const kek = new Uint8Array(Buffer.from(forge.random.getBytesSync(length), 'binary'));
+        const key = getRandomUint8Array(length);
+        const kek = getRandomUint8Array(length);
 
         const wrappedKey = wrapKey(key, kek);
         const keyBack = unwrapKey(wrappedKey, kek);
@@ -74,11 +79,8 @@ suite('wrapping', (): void => {
 
   suite('error cases', (): void => {
     test('throws unauthenticInputException when wrappedKey was tampered with.', async (): Promise<void> => {
-      // eslint-disable-next-line no-sync
-      const key = new Uint8Array(Buffer.from(forge.random.getBytesSync(32), 'binary'));
-
-      // eslint-disable-next-line no-sync
-      const kek = new Uint8Array(Buffer.from(forge.random.getBytesSync(32), 'binary'));
+      const key = getRandomUint8Array(32);
+      const kek = getRandomUint8Array(32);
       const wrappedKey = wrapKey(key, kek);
 
       // Change first byte
@@ -91,11 +93,8 @@ suite('wrapping', (): void => {
     });
 
     test('throws unauthenticInputException on invalid kek.', async (): Promise<void> => {
-      // eslint-disable-next-line no-sync
-      const key = new Uint8Array(Buffer.from(forge.random.getBytesSync(32), 'binary'));
-
-      // eslint-disable-next-line no-sync
-      const kek = new Uint8Array(Buffer.from(forge.random.getBytesSync(32), 'binary'));
+      const key = getRandomUint8Array(32);
+      const kek = getRandomUint8Array(32);
       const wrappedKey = wrapKey(key, kek);
 
       // Change first byte
@@ -108,11 +107,8 @@ suite('wrapping', (): void => {
     });
 
     test('throws exception on invalid kek length (wrap).', async (): Promise<void> => {
-      // eslint-disable-next-line no-sync
-      const key = new Uint8Array(Buffer.from(forge.random.getBytesSync(32), 'binary'));
-
-      // eslint-disable-next-line no-sync
-      const kek = new Uint8Array(Buffer.from(forge.random.getBytesSync(20), 'binary'));
+      const key = getRandomUint8Array(32);
+      const kek = getRandomUint8Array(20);
 
       assert.that((): void => {
         wrapKey(key, kek);
@@ -120,11 +116,8 @@ suite('wrapping', (): void => {
     });
 
     test('throws exception on invalid kek length (unwrap).', async (): Promise<void> => {
-      // eslint-disable-next-line no-sync
-      const wrappedKey = new Uint8Array(Buffer.from(forge.random.getBytesSync(40), 'binary'));
-
-      // eslint-disable-next-line no-sync
-      const kek = new Uint8Array(Buffer.from(forge.random.getBytesSync(20), 'binary'));
+      const wrappedKey = getRandomUint8Array(40);
+      const kek = getRandomUint8Array(20);
 
       assert.that((): void => {
         unwrapKey(wrappedKey, kek);
@@ -132,11 +125,8 @@ suite('wrapping', (): void => {
     });
 
     test('throws exception on invalid key length for kek.', async (): Promise<void> => {
-      // eslint-disable-next-line no-sync
-      const key = new Uint8Array(Buffer.from(forge.random.getBytesSync(24), 'binary'));
-
-      // eslint-disable-next-line no-sync
-      const kek = new Uint8Array(Buffer.from(forge.random.getBytesSync(32), 'binary'));
+      const key = getRandomUint8Array(24);
+      const kek = getRandomUint8Array(32);
 
       assert.that((): void => {
         wrapKey(key, kek);
@@ -144,11 +134,8 @@ suite('wrapping', (): void => {
     });
 
     test('throws exception on invalid wrappedKey length for kek.', async (): Promise<void> => {
-      // eslint-disable-next-line no-sync
-      const wrappedKey = new Uint8Array(Buffer.from(forge.random.getBytesSync(32), 'binary'));
-
-      // eslint-disable-next-line no-sync
-      const kek = new Uint8Array(Buffer.from(forge.random.getBytesSync(32), 'binary'));
+      const wrappedKey = getRandomUint8Array(32);
+      const kek = getRandomUint8Array(32);
 
       assert.that((): void => {
         unwrapKey(wrappedKey, kek);

@@ -1,5 +1,6 @@
 // Implemented, following this specification: https://www.heise.de/netze/rfc/rfcs/rfc3394.shtml (index approach),
-// originated by http://csrc.nist.gov/encryption/kms/key-wrap.pdf
+// originated by nist specification
+// further information: https://www.rfc-editor.org/rfc/rfc3394
 // Tested, using this test vectors:
 // * https://datatracker.ietf.org/doc/html/rfc3394#section-4.1
 // * https://datatracker.ietf.org/doc/html/rfc3394#section-4.4
@@ -9,10 +10,14 @@
 /* eslint-disable id-length */
 
 import { Buffer } from 'buffer/';
-import forge from 'node-forge';
+import CryptoJS from 'crypto-js';
 
 const iv = Buffer.from('A6'.repeat(8), 'hex');
-const paddingOf16Byte = Buffer.from('10'.repeat(16), 'hex');
+
+const algoOptions = {
+  mode: CryptoJS.mode.ECB,
+  padding: CryptoJS.pad.NoPadding
+};
 
 const checkKekLength = (kek: Buffer): void => {
   if (kek.length !== 16 && kek.length !== 24 && kek.length !== 32) {
@@ -57,6 +62,9 @@ const copyBuffer = (src: Buffer): Buffer => {
   return copy;
 };
 
+const bufferToWordArray = (buffer: Buffer): CryptoJS.lib.WordArray => CryptoJS.enc.Base64.parse(buffer.toString('base64'));
+const wordArrayToBuffer = (wordArray: CryptoJS.lib.WordArray): Buffer => Buffer.from(CryptoJS.enc.Base64.stringify(wordArray), 'base64');
+
 const xorBufferAndNumber = (buffer: Buffer, number: number): Uint8Array => {
   const numberUint8 = new Uint8Array(buffer.length);
   const resultingUint8 = new Uint8Array(buffer.length);
@@ -83,36 +91,22 @@ const writeUint8ArrayToBuffer = (buffer: Buffer, uint8: Uint8Array): void => {
 };
 
 const aesEncrypt = (key: Buffer, plaintext: Buffer): Buffer => {
-  const keyForgeBuffer = forge.util.createBuffer(key, 'raw');
-  const plainForgeBuffer = forge.util.createBuffer(plaintext, 'raw');
-  const cipher = forge.cipher.createCipher('AES-ECB', keyForgeBuffer);
+  const keyWordArray = bufferToWordArray(key);
+  const plaintextWordArray = bufferToWordArray(plaintext);
 
-  cipher.start({});
-  cipher.update(plainForgeBuffer);
-  cipher.finish();
+  const cipherParams = CryptoJS.AES.encrypt(plaintextWordArray, keyWordArray, algoOptions);
+  const ciphertextWordArray = cipherParams.ciphertext;
 
-  // Drop last 16 byte since this is the padding (padding can't be disabled with node-forge, unfortunately)
-  return Buffer.from(cipher.output.bytes(), 'binary').slice(0, -16);
-};
-
-// Restore padding (padding can't be disabled with node-forge, unfortunately)
-const restorePadding = (ciphertextWithoutPadding: Buffer, key: Buffer): Buffer => {
-  const padding = aesEncrypt(key, paddingOf16Byte);
-
-  return join([ ciphertextWithoutPadding, padding ]);
+  return wordArrayToBuffer(ciphertextWordArray);
 };
 
 const aesDecrypt = (key: Buffer, ciphertext: Buffer): Buffer => {
-  const ciphertextPadded = restorePadding(ciphertext, key);
-  const keyForgeBuffer = forge.util.createBuffer(key, 'raw');
-  const cipherForgeBuffer = forge.util.createBuffer(ciphertextPadded, 'raw');
-  const cipher = forge.cipher.createDecipher('AES-ECB', keyForgeBuffer);
+  const keyWordArray = bufferToWordArray(key);
+  const ciphertextBase64 = ciphertext.toString('base64');
 
-  cipher.start({});
-  cipher.update(cipherForgeBuffer);
-  cipher.finish();
+  const plaintextWordArray = CryptoJS.AES.decrypt(ciphertextBase64, keyWordArray, algoOptions);
 
-  return Buffer.from(cipher.output.bytes(), 'binary');
+  return wordArrayToBuffer(plaintextWordArray);
 };
 
 const doWrappingTransformation = (A: Buffer, R: Buffer[], kek: Buffer, n: number, j: number, i: number): void => {
@@ -188,4 +182,4 @@ const aesUnwrapKey = (wrappedKey: Buffer, kek: Buffer): Buffer | null => {
 
 /* eslint-enable id-length */
 
-export { aesWrapKey, aesUnwrapKey };
+export { aesWrapKey, aesUnwrapKey, wordArrayToBuffer };
