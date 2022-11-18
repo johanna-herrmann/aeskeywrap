@@ -1,6 +1,6 @@
 {
   "name": "aeskeywrap",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "Provides the RFC 3394 key wrapping (also known as aes-key-wrap), written in TypeScrypt.",
   "contributors": [
     {
@@ -24,7 +24,9 @@
   "devDependencies": {
     "assertthat": "6.5.2",
     "roboter": "13.2.1",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.0"
   },
   "scripts": {},
   "repository": {

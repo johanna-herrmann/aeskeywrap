@@ -1,14 +1,28 @@
 # Changelog
 
+## v1.2.0
+### 2022-11-19
+
+#### Fixes
+* Fix API Documentation
+  * Fix wrong variable names \
+    `wrapToString` corrected to `wrapKeyToString` \
+    `unwrapFromString` corrected to `unwrapKeyFromString` \
+  * Fix dead link to specification (site is or was down)
+
+#### Features / Improvements
+* Provide browser-ready js file
+* Improve Code quality, by switching to crypto-js, to get rid of no-padding-workaround
+
 ## v1.0.1
 ### 2022-11-15
 
 #### Fixes
-* Improved documentation
-  * Included error handling
-  * Improved wording
-  * Improved status batches
-  * Added changelog
+* Improve documentation
+  * Include error handling
+  * Improve wording
+  * Improve status batches
+  * Add changelog
 
 ## v1.0.0
 ### 2022-11-13

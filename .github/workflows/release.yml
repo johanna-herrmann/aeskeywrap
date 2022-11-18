@@ -29,6 +29,9 @@ jobs:
     - name: Compile TypeScript
       run: |
         npx roboter build
+    - name: Build browser-ready js file
+      run: |
+        npx webpack
     - name: Release
       uses: JS-DevTools/npm-publish@v1
       with:
