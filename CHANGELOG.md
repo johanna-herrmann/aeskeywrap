@@ -7,7 +7,7 @@
 * Fix API Documentation
   * Fix wrong variable names \
     `wrapToString` corrected to `wrapKeyToString` \
-    `unwrapFromString` corrected to `unwrapKeyFromString` \
+    `unwrapFromString` corrected to `unwrapKeyFromString`
   * Fix dead link to specification (site is or was down)
 
 #### Features / Improvements
