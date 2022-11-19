@@ -4,17 +4,13 @@
 
 [![npm](https://img.shields.io/npm/v/aeskeywrap)](https://www.npmjs.com/package/aeskeywrap) [![QA](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml/badge.svg?branch=main)](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml)
 
-This package provides the [RFC 3394 key wrapping](http://csrc.nist.gov/encryption/kms/key-wrap.pdf) (also known as aes-key-wrap). \
+This package provides the [RFC 3394 key wrapping](https://www.rfc-editor.org/rfc/rfc3394) (also known as aes-key-wrap). \
 It's written in TypeScrypt.
 
 ## Introduction
 
 This package implements the aes-key-wrap (key wrapping and unwrapping), following [this heise article](https://www.heise.de/netze/rfc/rfcs/rfc3394.shtml),
-based on the [specification by nist](http://csrc.nist.gov/encryption/kms/key-wrap.pdf).
-
-It works in:
-* nodejs
-* browsers (using, build and package tools like webpack or browserify)
+based on the specification by nist.
 
 ## Supported key/kek lengths
 
@@ -38,18 +34,51 @@ With aes-key-wrap you can wrap (encrypt) a key, used to encrypt data, using a so
 
 *KEK = Key encryption key (key, used to encrypt another key)
 
-## Install
+## Install (node.js)
 ```bash
 npm i aeskeywrap
 ```
+
+## Import / Loading
+
+### Node.js
+
+```js
+// Replace ... with a comma-separated list of the functions, you need
+import { ... } from 'aeskeywrap';
+```
+
+### Browser
+
+```html
+<!-- Load the file from jsDelivr -->
+<script src="https://cdn.jsdelivr.net/npm/aeskeywrap@1.2.0/dist/aeskeywrap.js"></script>
+
+<!-- or load the file from unpkg -->
+<script src="https://unpkg.com/aeskeywrap@1.2.0/dist/aeskeywrap.js"></script>
+
+<!-- or download the file and host it yourself -->
+<script src="/js/aeskeywrap.js"></script>
+
+<script>
+  // Replace ... with a comma-separated list of the functions, you need
+  const { ... } = aeskeywrap;
+</script>
+```
+
+### Available functions
+* keyWrap: wraps a key with a kek
+* unwrapKey: unwraps a wrapped key with a kek
+* toString: encodes an Uint8Array to a string
+* fromString: decodes a string to an Uint8Array
+* wrapKeyToString: wraps a key with a kek and encodes it
+* unwrapKeyFromString: decodes a wrappedKey and unwraps it
 
 ## Usage
 
 ### Wrap key with kek
 
 ```js
-import { wrapKey } from 'aeskeywrap';
-
 // key, kek and wrappedKey are Unit8Arrays
 const wrappedKey = wrapKey(key, kek);
 ```
@@ -57,8 +86,6 @@ const wrappedKey = wrapKey(key, kek);
 ### Unwrap key with kek
 
 ```js
-import { unwrapKey } from 'aeskeywrap';
-
 // key, kek and wrappedKey are Unit8Arrays
 const key = unwrapKey(wrappedKey, kek);
 ```
@@ -68,8 +95,6 @@ const key = unwrapKey(wrappedKey, kek);
 #### Uint8Array to string
 
 ```js
-import { toString } from 'aeskeywrap';
-
 // convert Uint8Array to base64 string
 const wrappedKeyBase64 = toString(wrappedKey, 'base64')
 
@@ -80,8 +105,6 @@ const wrappedKeyHex = toString(wrappedKey, 'hex')
 #### string to Uint8Array
 
 ```js
-import { fromString } from 'aeskeywrap';
-
 // convert Uint8Array to base64 string
 const wrappedKey = fromString(wrappedKeyBase64, 'base64')
 
@@ -92,17 +115,13 @@ const wrappedKey_ = fromString(wrappedKeyhex, 'hex')
 #### wrap and convert to base64 string at once
 
 ```js
-import { wrapKeyToString } from 'aeskeywrap';
-
-const wrappedKey = wrapToString(key, kek, 'base64');
+const wrappedKey = wrapKeyToString(key, kek, 'base64');
 ```
 
 #### convert from base64 string and unwrap at once
 
 ```js
-import { unwrapKeyFromString } from 'aeskeywrap';
-
-const key = unwrapFromString(wrappedKeyBase64, kek, 'base64');
+const key = unwrapKeyFromString(wrappedKeyBase64, kek, 'base64');
 ```
 
 #### encodings
@@ -140,8 +159,8 @@ The message `Unauthentic data. Wrong kek?` will never change (design decision). 
 
 ## Used crypto libraries
 
-* [node-forge](https://www.npmjs.com/package/node-forge) by [digitalbazaar](https://github.com/digitalbazaar), \
-  used for AES encryption and decryption (AES-256)
+* [crypto-js](https://www.npmjs.com/package/crypto-js) by [evanvosberg](https://www.npmjs.com/~evanvosberg), \
+  used for AES single block encryption and decryption
 
 ## Tests
 
