@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.2
+### 2022-11-19
+
+#### Fixes
+* Fix: Docs: Fix browser-ready js file urls
+
 ## v1.2.1
 ### 2022-11-19
 

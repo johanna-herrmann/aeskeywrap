@@ -52,10 +52,10 @@ import { ... } from 'aeskeywrap';
 
 ```html
 <!-- Load the file from jsDelivr -->
-<script src="https://cdn.jsdelivr.net/npm/aeskeywrap@1.2.0/dist/aeskeywrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aeskeywrap@1.2.2/dist/aeskeywrap.js"></script>
 
 <!-- or load the file from unpkg -->
-<script src="https://unpkg.com/aeskeywrap@1.2.0/dist/aeskeywrap.js"></script>
+<script src="https://unpkg.com/aeskeywrap@1.2.2/dist/aeskeywrap.js"></script>
 
 <!-- or download the file and host it yourself -->
 <script src="/js/aeskeywrap.js"></script>
