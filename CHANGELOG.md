@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.1
+### 2022-11-19
+
+#### Fixes
+* Fix: Browser-ready js file was excluded during release
+
 ## v1.2.0
 ### 2022-11-19
 
