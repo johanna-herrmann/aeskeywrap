@@ -4,18 +4,18 @@
   "description": "Provides the RFC 3394 key wrapping (also known as aes-key-wrap), written in TypeScrypt.",
   "contributors": [
     {
-      "name": "mark-herrmann",
-      "email": "github@markherrmann.de"
+      "name": "johanna-herrmann",
+      "email": "github@johanna-herrmann.de"
     }
   ],
   "private": false,
   "main": "build/lib/index.js",
   "types": "build/lib/index.d.ts",
-  "author": "Mark Herrmann (mark-herrmann)",
+  "author": "Johanna Herrmann (johanna-herrmann)",
   "bugs": {
-    "url": "https://github.com/mark-herrmann/aeskeywrap/issues"
+    "url": "https://github.com/johanna-herrmann/aeskeywrap/issues"
   },
-  "homepage": "https://github.com/mark-herrmann/aeskeywrap#readme",
+  "homepage": "https://github.com/johanna-herrmann/aeskeywrap#readme",
   "dependencies": {
     "@types/crypto-js": "4.1.1",
     "buffer": "6.0.3",
@@ -31,7 +31,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mark-herrmann/aeskeywrap.git"
+    "url": "git+https://github.com/johanna-herrmann/aeskeywrap.git"
   },
   "keywords": [
     "crypto",
