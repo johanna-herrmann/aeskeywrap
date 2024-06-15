@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/johanna-herrmann/aeskeywrap#readme",
   "dependencies": {
-    "@types/crypto-js": "4.1.1",
+    "@types/crypto-js": "4.2.2",
     "buffer": "6.0.3",
-    "crypto-js": "4.1.1"
+    "crypto-js": "4.2.0"
   },
   "devDependencies": {
     "assertthat": "6.5.2",
