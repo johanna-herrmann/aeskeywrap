@@ -2,7 +2,7 @@
 
 [![npm package](https://nodei.co/npm/aeskeywrap.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/aeskeywrap/)
 
-[![npm](https://img.shields.io/npm/v/aeskeywrap)](https://www.npmjs.com/package/aeskeywrap) [![QA](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml/badge.svg?branch=main)](https://github.com/mark-herrmann/aeskeywrap/actions/workflows/qa.yml)
+[![npm](https://img.shields.io/npm/v/aeskeywrap)](https://www.npmjs.com/package/aeskeywrap) [![QA](https://github.com/johanna-herrmann/aeskeywrap/actions/workflows/qa.yml/badge.svg?branch=main)](https://github.com/johanna-herrmann/aeskeywrap/actions/workflows/qa.yml)
 
 This package provides the [RFC 3394 key wrapping](https://www.rfc-editor.org/rfc/rfc3394) (also known as aes-key-wrap). \
 It's written in TypeScrypt.
@@ -171,7 +171,7 @@ Unit Tests based on official test vectors
 
 ## Changelog
 
-[Changelog](https://github.com/mark-herrmann/aeskeywrap/blob/main/CHANGELOG.md)
+[Changelog](https://github.com/johanna-herrmann/aeskeywrap/blob/main/CHANGELOG.md)
 
 ## License
 

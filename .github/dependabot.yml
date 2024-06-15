@@ -6,7 +6,7 @@ updates:
     interval: weekly
   open-pull-requests-limit: 10
   assignees:
-  - mark-herrmann
+  - johanna-herrmann
   labels:
   - Dependencies
   versioning-strategy: increase
