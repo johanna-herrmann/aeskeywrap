@@ -1,5 +1,15 @@
 # aeskeywrap
 
+# DEPRECATED
+**PLEASE USE native APIs instead**
+
+* web:
+  * wrap: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/wrapKey
+  * unwrap: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/unwrapKey
+* nodejs (algorith: `aes<size>-wrap` (example: `aes256-wrap`))
+  * wrap: https://nodejs.org/api/crypto.html#class-cipher
+  * unwrap: https://nodejs.org/api/crypto.html#class-decipher   
+
 [![npm package](https://nodei.co/npm/aeskeywrap.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/aeskeywrap/)
 
 [![npm](https://img.shields.io/npm/v/aeskeywrap)](https://www.npmjs.com/package/aeskeywrap) [![QA](https://github.com/johanna-herrmann/aeskeywrap/actions/workflows/qa.yml/badge.svg?branch=main)](https://github.com/johanna-herrmann/aeskeywrap/actions/workflows/qa.yml)
